@@ -9,15 +9,18 @@ func main() {
 }
 
 func find( x int, arr []int ) string{
-	arrLen := len(arr)
-	if( arrLen > 1 ) {
+	
+	for {
+		arrLen := len(arr)
 		midpoint := (arrLen)/2
-		if( x == arr[midpoint] ) {
+		if( arrLen < 1 ) {
+			return fmt.Sprintf("Not found")
+		} else if( arr[midpoint] == x ) {
 			return fmt.Sprintf("Found at index: %d", x)
-		} else if( x < arr[midpoint] ) {
-			return find( x, arr[0:midpoint] ) 
+		} else if ( x < arr[midpoint] ) {
+			arr = arr[0:midpoint]
 		} else {
-			return find( x, arr[midpoint:] )
+			arr = arr[midpoint:]
 		}
 	}
 	return fmt.Sprintf("Not found")
